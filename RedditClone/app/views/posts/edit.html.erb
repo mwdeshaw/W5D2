@@ -1,0 +1,32 @@
+<h1>Edit Post</h1>
+
+<form action="<%=posts_url%>" method="post">
+  <label>Title 
+    <input type="text" name="post[title]" value="<%=@post.title%>">
+  </label>
+  <label>URL 
+    <input type="text" name="post[url]" value="<%=@post.url%>">
+  </label>
+  <br>
+  <label>Content 
+    <textarea name="post[content]" cols="30" rows="10"><%=@post.content%></textarea>
+  </label>
+<br>
+<br>
+  <label>Subs
+  <ul>
+    <%Sub.all.each do |sub| %>
+    <li>
+    <label><%=sub.title%>
+      <input type="checkbox" name= "post[sub_ids][]" value="<%=sub.id%>" <%= "checked" if sub.id ==  %>>
+      </label>
+      </li>
+    <% end %>
+    </ul>
+  </label>
+
+  <input type="submit" value="Update Post">
+
+
+
+</form>
