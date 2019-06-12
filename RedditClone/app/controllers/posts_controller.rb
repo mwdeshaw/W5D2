@@ -9,12 +9,13 @@ class PostsController < ApplicationController
    
       @post = Post.new(posts_params)
       @post.user_id = current_user.id
-      @post.save
-      # flash.now[:errors] = @post.errors.full_messages
-      # if flash.now[:errors]
-      #   return render :new
-      # end
-    redirect_to subs_url
+      
+      if @post.save
+        redirect_to subs_url
+      else 
+        flash.now[:errors] = @post.errors.full_messages
+        render :new
+      end
   end
 
   def edit
